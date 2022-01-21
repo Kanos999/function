@@ -1,0 +1,16 @@
+{
+  "name": "News",
+  "version": "1.0.0",
+  "description": "An unbiased-biased news site",
+  "dependencies": {
+    "cookie": "^0.3.1",
+    "express": "^4.13.3",
+    "mysql": "^2.12.0",
+    "node-windows": "^0.1.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kane Jackson"
+}

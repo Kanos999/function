@@ -1,0 +1,49 @@
+<div id="notesDropdown" ng-controller="notesController" ng-mousemove="noteMove($event)" ng-mouseup="noteUpdatePosition()">
+
+
+    <div id="folders">
+        <div class="folderList" ng-repeat="folder in folders" ng-click="getNotes(folder.folderName, $index)" id="folder{{$index}}" class="mdl-menu__item">
+            <h8>{{folder.folderName}}</h8>
+            <button class="mdl-button mdl-js-button mdl-button--icon icon" ng-click="removeFolder(folder.folderName)"  style="right: 10px; position: absolute; margin-top: -4px;">
+                <i class="material-icons">delete</i>
+            </button>
+        </div>
+        <button class="mdl-button mdl-js-button mdl-js-ripple-effect" ng-click="addFolderDialogue()" ng-click="currentDialogueBox = 'folder'" style="margin-top: 10px; background-color: rgba(255, 255, 255, 0.8); border: none;">
+            Add a folder
+        </button>
+    </div>
+
+
+    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" ng-click="addNoteDialogue()" ng-click="currentDialogueBox = 'note'" id="noteFabButton">
+        <i class="material-icons">add</i>
+    </button>
+    <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="noteFabButton">
+        Add a Note
+    </div>
+
+    <div ng-repeat="note in notes" ng-style="{left: note.x + 'px', top: note.y + 'px'}" class="note" id="note{{$index}}">
+        <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect icon" ng-click="removeNote($index)" class="addButton" style="right: 10px; position: absolute;">
+            <i class="material-icons">close</i>
+        </button>
+        <div class="noteHeader" ng-mousedown="noteMouseDown($index, $event);">{{note.header}}</div>
+        <textarea placeholder="Type your content here" ng-keyup="noteContentChange($index);" ng-model="note.content">{{note.content}}</textarea>
+    </div>
+
+    <button class="mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect icon" id="closeFoldersButton" ng-click="closeFolders()" style="top: 20px; right: 40px; position: absolute; color: black;">
+        <i class="material-icons">close</i>
+    </button>
+    <div class="mdl-tooltip mdl-tooltip--left" data-mdl-for="closeFoldersButton">
+        Exit
+    </div>
+</div>
+
+
+
+<div id="deletedFolder" class="mdl-js-snackbar mdl-snackbar snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>
+<div id="deletedNote" class="mdl-js-snackbar mdl-snackbar snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+</div>
